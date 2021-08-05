@@ -1,6 +1,17 @@
 const form = document.getElementById("dino-compare");
 const button = document.getElementById("btn");
 
+const dinoData = () => {
+   return fetch('./dino.json')
+    .then(response => response.json())
+    .then(data => {
+      return data;
+    })
+    .catch((error) => console.log(error));
+}
+
+console.log(dinoData());
+
 // Create Dino Constructor
 class Dino {
   constructor(species, weight, height, diet, where, when, fact) {
