@@ -1,13 +1,33 @@
 const form = document.getElementById("dino-compare");
 const button = document.getElementById("btn");
 
-    // Create Dino Constructor
+// Create Dino Constructor
+class Dino {
+  constructor(species, weight, height, diet, where, when, fact) {
+    this.species = species,
+    this.weight = weight,
+    this.height = height,
+    this.diet = diet,
+    this.where = where,
+    this.when = when,
+    this.fact = fact
+  }
+}
 
 
-    // Create Dino Objects
+// Create Dino Objects
 
 
 // Create Human Object
+class Human {
+  constructor(name, feet, inches, diet) {
+    this.name = name,
+    this.feet = feet,
+    this.inches = inches,
+    this.diet = diet,
+    this.species = 'human'
+  }
+}
 
 button.addEventListener("click", (event) {
   const name = document.getElementById("name").value;
