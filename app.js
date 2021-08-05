@@ -29,7 +29,7 @@ class Human {
   }
 }
 
-button.addEventListener("click", (event) {
+button.addEventListener("click", (event) => {
   const name = document.getElementById("name").value;
   console.log(name);
 
