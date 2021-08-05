@@ -32,7 +32,14 @@ class Human {
 button.addEventListener("click", (event) => {
   const name = document.getElementById("name").value;
   console.log(name);
-
+  const feet = document.getElementById("feet").value;
+  console.log(feet);
+  const inches = document.getElementById("inches").value;
+  console.log(inches);
+  const weight = document.getElementById("weight").value;
+  console.log(weight);
+  const diet = document.getElementById("diet").value;
+  console.log(diet);
 });
 
    // Use IIFE to get human data from form
