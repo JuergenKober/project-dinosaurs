@@ -2,7 +2,8 @@ const form = document.getElementById("dino-compare");
 const button = document.getElementById("btn");
 const dataSource = './dino.json';
 let store = {
-  dinoData: ''
+  dinoData: '',
+  humanData: ''
 }
 
 function getDinoData(dataSource) {
@@ -35,7 +36,7 @@ async function handleDinoData(dataSource) {
 
 // Create Dino Constructor
 class Dino {
-  constructor(species, weight, height, diet, where, when, fact) {
+  constructor(species, weight, height, diet, where, when, fact, img_file) {
     this.species = species,
     this.weight = weight,
     this.height = height,
@@ -52,32 +53,43 @@ class Dino {
 
 // Create Human Object
 class Human {
-  constructor(name, feet, inches, diet) {
+  constructor(name, feet, inches, weight, diet) {
     this.name = name,
     this.feet = feet,
     this.inches = inches,
     this.diet = diet,
-    this.species = 'human'
+    this.weight = weight,
+    this.species = 'human',
+    this.img_file = 'human.png'
   }
 }
 
 function setupClickHandlers() {
 
   button.addEventListener("click", (event) => {
-    const name = document.getElementById("name").value;
-    console.log(name);
-    const feet = document.getElementById("feet").value;
-    console.log(feet);
-    const inches = document.getElementById("inches").value;
-    console.log(inches);
-    const weight = document.getElementById("weight").value;
-    console.log(weight);
-    const diet = document.getElementById("diet").value;
-    console.log(diet);
+    // Use IIFE to get human data from form
+    const handleFormData = (function getFormData() {
+      const name = document.getElementById("name").value;
+      console.log(name);
+      const feet = document.getElementById("feet").value;
+      console.log(feet);
+      const inches = document.getElementById("inches").value;
+      console.log(inches);
+      const weight = document.getElementById("weight").value;
+      console.log(weight);
+      const diet = document.getElementById("diet").value;
+      console.log(diet);
+
+      const humanData = new Human(name, feet, inches, weight, diet);
+      store = { ...store, humanData };
+      console.log('store, ', store);
+
+    })();
+
   }, false);
 }
 
-   // Use IIFE to get human data from form
+
 
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches.
