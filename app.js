@@ -12,6 +12,12 @@ function getDinoData(dataSource) {
 	.catch(err => console.log("An error occured while fetching data: ", err))
 }
 
+// use of event listener inspired by the udacity racer simulator project
+document.addEventListener("DOMContentLoaded", function() {
+	handleDinoData(dataSource);
+	setupClickHandlers();
+});
+
 
 async function handleDinoData(dataSource) {
 	try {
@@ -25,7 +31,6 @@ async function handleDinoData(dataSource) {
 	}
 }
 
-handleDinoData(dataSource);
 
 
 // Create Dino Constructor
@@ -56,18 +61,21 @@ class Human {
   }
 }
 
-button.addEventListener("click", (event) => {
-  const name = document.getElementById("name").value;
-  console.log(name);
-  const feet = document.getElementById("feet").value;
-  console.log(feet);
-  const inches = document.getElementById("inches").value;
-  console.log(inches);
-  const weight = document.getElementById("weight").value;
-  console.log(weight);
-  const diet = document.getElementById("diet").value;
-  console.log(diet);
-});
+function setupClickHandlers() {
+
+  button.addEventListener("click", (event) => {
+    const name = document.getElementById("name").value;
+    console.log(name);
+    const feet = document.getElementById("feet").value;
+    console.log(feet);
+    const inches = document.getElementById("inches").value;
+    console.log(inches);
+    const weight = document.getElementById("weight").value;
+    console.log(weight);
+    const diet = document.getElementById("diet").value;
+    console.log(diet);
+  }, false);
+}
 
    // Use IIFE to get human data from form
 
