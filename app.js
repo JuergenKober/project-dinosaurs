@@ -1,16 +1,32 @@
 const form = document.getElementById("dino-compare");
 const button = document.getElementById("btn");
-
-const dinoData = () => {
-   return fetch('./dino.json')
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    })
-    .catch((error) => console.log(error));
+const dataSource = './dino.json';
+let store = {
+  dinoData: ''
 }
 
-console.log(dinoData());
+function getDinoData(dataSource) {
+	return fetch(dataSource)
+	.then((response) => response.json())
+  .then(data => {return data;})
+	.catch(err => console.log("An error occured while fetching data: ", err))
+}
+
+
+async function handleDinoData(dataSource) {
+	try {
+    const dinoData = await getDinoData(dataSource);
+    store = { ...store, dinoData };
+    console.log('store, ', store);
+	} catch(err) {
+		console.log(`An error occured in handleDinoData: ${err.message}`);
+		// print full error to console
+		console.error(err);
+	}
+}
+
+handleDinoData(dataSource);
+
 
 // Create Dino Constructor
 class Dino {
