@@ -130,11 +130,11 @@ function setupClickHandlers() {
 // NOTE: Weight in JSON file is in lbs, height in inches.
 Dino.prototype.compareHeight = function(humanHeight) {
   if (this.height > humanHeight) {
-    this.compare_msg = 'Dino is bigger than Human';
+    this.compare_msg = `The ${this.species} is bigger than Human`;
   } else if (this.height < humanHeight) {
-    this.compare_msg = 'Dino is smaller than Human';
+    this.compare_msg = `The ${this.species} is smaller than Human`;
   } else {
-    this.compare_msg = 'Dino is as big as Human';
+    this.compare_msg = `The ${this.species} is as big as Human`;
   }
   return this.compare_msg;
 }
@@ -143,11 +143,11 @@ Dino.prototype.compareHeight = function(humanHeight) {
 // NOTE: Weight in JSON file is in lbs, height in inches.
 Dino.prototype.compareWeight = function(humanWeight) {
   if (this.weight > humanWeight) {
-    this.compare_msg = 'Dino is heavier than Human';
+    this.compare_msg = `The ${this.species} is heavier than Human`;
   } else if (this.weight < humanWeight) {
-    this.compare_msg = 'Dino is lighter than Human';
+    this.compare_msg = `The ${this.species} is lighter than Human`;
   } else {
-    this.compare_msg = 'Dino is as heavy as Human';
+    this.compare_msg = `The ${this.species} is as heavy as Human`;
   }
   return this.compare_msg;
 }
@@ -155,19 +155,11 @@ Dino.prototype.compareWeight = function(humanWeight) {
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
 Dino.prototype.compareDiet = function(humanDiet) {
-  this.compare_msg = `The dino's diet is ${this.diet}, the humans diet is ${humanDiet}`;
+  this.compare_msg = `The ${this.species}'s diet is ${this.diet}, the human's diet is ${humanDiet}`;
   return this.compare_msg;
 }
 
 Dino.prototype.getFacts = function(human) {
-/****
-  weight": 70000,
-  "height": "372",
-  "diet": "herbavor",
-  "where": "North America",
-  "when": "Late Jurasic",
-  "fact
-***/
   const dinoFacts = [
     this.fact,
     `This dinosaur lived in ${this.where}`,
