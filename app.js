@@ -48,7 +48,8 @@ class Dino {
     this.when = when,
     this.fact = fact,
     this.img_file = img_file,
-    this.compare_msg = ''
+    this.compare_msg = '',
+    this.default_msg = 'All birds are considered dinosaurs.'
   }
 }
 
