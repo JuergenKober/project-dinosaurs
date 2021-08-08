@@ -190,29 +190,56 @@ const generateDinoTile = (dinos, bird, human) => {
   creatureList.push(bird);
   const tiles = creatureList.map((elem, index) => {
     const dinoFact = elem.getFacts(human);
-    if (index !== 3 ) {
-      return `
-        <div class="grid-item">
-          ${elem.species}
-          <br />
-          ${dinoFact}
-        </div>
-      `
+    if (elem.species === 'Pigeon') {
+      return singleTile('bird', elem, elem.default_msg);
+    } else if (index !== 3 ) {
+      return singleTile('dino', elem, dinoFact);
     } else {
-      return `
-        <div class="grid-item">
-          ${elem.species}
-          <br />
-          ${dinoFact}
-        </div>
-        <div class="grid-item">human</div>
-      `
+      return singleTile('dino', elem, dinoFact).concat('', singleTile('human', human));
     }
   }).join("");
 
   console.log('tiles: ', tiles);
 
   return tiles;
+}
+
+function singleTile(type, obj, fact) {
+  switch(type) {
+    case 'dino':
+      return `
+        <div class="grid-item">
+          ${obj.species}
+          <br />
+          ${fact}
+        </div>
+      `
+      break;
+    case 'bird':
+      return `
+        <div class="grid-item">
+          ${obj.species}
+          <br />
+          ${fact}
+        </div>
+      `
+      break;
+    case 'human':
+      return `
+        <div class="grid-item">
+          ${obj.name}
+        </div>
+      `
+      break;
+    default:
+      return `
+        <div class="grid-item">
+          ${elem.species}
+          <br />
+          ${dinoFact}
+        </div>
+      `
+  }
 }
 
 /* Randomize array in-place using Durstenfeld shuffle algorithm */
