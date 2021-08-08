@@ -47,7 +47,8 @@ class Dino {
     this.where = where,
     this.when = when,
     this.fact = fact,
-    this.img_file = img_file
+    this.img_file = img_file,
+    this.compare_msg = ''
   }
 }
 
@@ -126,37 +127,35 @@ function setupClickHandlers() {
 
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches.
-const compareHeight = (dinoHeight, humanHeight) => {
-  const msg = '';
-  if (dinoHeight > humanHeight) {
-    msg = 'Dino is bigger than Human';
-  } else if (dinoHeight < humanHeight) {
-    msg = 'Dino is smaller than Human';
+Dino.prototype.compareHeight = function(humanHeight) {
+  if (this.height > humanHeight) {
+    this.compare_msg = 'Dino is bigger than Human';
+  } else if (this.height < humanHeight) {
+    this.compare_msg = 'Dino is smaller than Human';
   } else {
-    msg = 'Dino is as big as Human';
+    this.compare_msg = 'Dino is as big as Human';
   }
-  return msg;
+  return this.compare_msg;
 }
 
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches.
-const compareWeight = (dinoWeight, humanWeight) => {
-  const msg = '';
-  if (dinoWeight > humanWeight) {
-    msg = 'Dino is heavier than Human';
-  } else if (dinoWeight < humanWeight) {
-    msg = 'Dino is lighter than Human';
+Dino.prototype.compareWeight = function(humanWeight) {
+  if (this.weight > humanWeight) {
+    this.compare_msg = 'Dino is heavier than Human';
+  } else if (this.weight < humanWeight) {
+    this.compare_msg = 'Dino is lighter than Human';
   } else {
-    msg = 'Dino is as heavy as Human';
+    this.compare_msg = 'Dino is as heavy as Human';
   }
-  return msg;
+  return this.compare_msg;
 }
 
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
-const compareDiet = (dinoDiet, humanDiet) => {
-  const msg = `The dino's diet is ${dinoDiet}, the humans diet is ${humanDiet}`;
-  return msg;
+Dino.prototype.compareDiet = function(humanDiet) {
+  this.compare_msg = `The dino's diet is ${this.diet}, the humans diet is ${humanDiet}`;
+  return this.compare_msg;
 }
 
 Dino.prototype.getFacts = function(human) {
@@ -171,10 +170,16 @@ Dino.prototype.getFacts = function(human) {
   const dinoFacts = [
     this.fact,
     `This dinosaur lived in ${this.where}`,
-    `This dinosaur during the ${this.when}`
+    `This dinosaur lived during the ${this.when}`,
+    this.compareHeight(human.height),
+    this.compareWeight(human.weight),
+    this.compareDiet(human.diet)
   ]
-  console.log(dinoFacts);
-  return dinoFacts[0];
+  const dinoIndex = Math.round(Math.random(0, dinoFacts.length-1)*(dinoFacts.length-1));
+
+  console.log('random ', dinoIndex);
+  console.log('random ', dinoFacts[dinoIndex]);
+  return dinoFacts[dinoIndex];
 };
 
 // Generate Tiles for each Dino in Array
@@ -194,7 +199,11 @@ const generateDinoTile = (dinos, bird, human) => {
       `
     } else {
       return `
-        <div class="grid-item">${elem.species}</div>
+        <div class="grid-item">
+          ${elem.species}
+          <br />
+          ${dinoFact}
+        </div>
         <div class="grid-item">human</div>
       `
     }
