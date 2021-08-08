@@ -86,10 +86,12 @@ const createDinoObjects = () => {
 class Human {
   constructor(name, feet, inches, weight, diet) {
     this.name = name,
-    this.feet = feet,
     this.diet = diet,
+    this.feet = parseInt(feet),
+    this.inches = parseInt(inches),
+    // 1 foot is equal to 12 inches
+    this.height = parseInt(feet)*12 + parseInt(inches),
     this.weight = parseInt(weight),
-    this.inches = inches(height),
     this.species = 'human',
     this.img_file = 'human.png'
   }
@@ -175,9 +177,6 @@ function shuffleArray(array) {
 const generateTiles = (elem, store) => {
 
   const tiles = generateDinoTile(store.dinoObjs, store.birdObj);
-
-
-
   elem.innerHTML = tiles;
   /***
    `
