@@ -128,34 +128,34 @@ function setupClickHandlers() {
 
 // Create Dino Compare Method 1
 // NOTE: Weight in JSON file is in lbs, height in inches.
-Dino.prototype.compareHeight = function(humanHeight) {
-  if (this.height > humanHeight) {
-    this.compare_msg = `The ${this.species} is bigger than Human`;
-  } else if (this.height < humanHeight) {
-    this.compare_msg = `The ${this.species} is smaller than Human`;
+Dino.prototype.compareHeight = function(human) {
+  if (this.height > human.height) {
+    this.compare_msg = `The ${this.species} is bigger than ${human.name}`;
+  } else if (this.height < human.height) {
+    this.compare_msg = `The ${this.species} is smaller than ${human.name}`;
   } else {
-    this.compare_msg = `The ${this.species} is as big as Human`;
+    this.compare_msg = `The ${this.species} is as big as ${human.name}`;
   }
   return this.compare_msg;
 }
 
 // Create Dino Compare Method 2
 // NOTE: Weight in JSON file is in lbs, height in inches.
-Dino.prototype.compareWeight = function(humanWeight) {
-  if (this.weight > humanWeight) {
-    this.compare_msg = `The ${this.species} is heavier than Human`;
-  } else if (this.weight < humanWeight) {
-    this.compare_msg = `The ${this.species} is lighter than Human`;
+Dino.prototype.compareWeight = function(human) {
+  if (this.weight > human.weight) {
+    this.compare_msg = `The ${this.species} is heavier than ${human.name}`;
+  } else if (this.weight < human.weight) {
+    this.compare_msg = `The ${this.species} is lighter than ${human.name}`;
   } else {
-    this.compare_msg = `The ${this.species} is as heavy as Human`;
+    this.compare_msg = `The ${this.species} is as heavy as ${human.name}`;
   }
   return this.compare_msg;
 }
 
 // Create Dino Compare Method 3
 // NOTE: Weight in JSON file is in lbs, height in inches.
-Dino.prototype.compareDiet = function(humanDiet) {
-  this.compare_msg = `The ${this.species}'s diet is ${this.diet}, the human's diet is ${humanDiet}`;
+Dino.prototype.compareDiet = function(human) {
+  this.compare_msg = `The ${this.species}'s diet is ${this.diet}, the ${human.name}'s diet is ${human.diet}`;
   return this.compare_msg;
 }
 
@@ -164,9 +164,9 @@ Dino.prototype.getFacts = function(human) {
     this.fact,
     `This dinosaur lived in ${this.where}`,
     `This dinosaur lived during the ${this.when}`,
-    this.compareHeight(human.height),
-    this.compareWeight(human.weight),
-    this.compareDiet(human.diet)
+    this.compareHeight(human),
+    this.compareWeight(human),
+    this.compareDiet(human)
   ]
   const dinoIndex = Math.round(Math.random(0, dinoFacts.length-1)*(dinoFacts.length-1));
 
@@ -197,10 +197,15 @@ const generateDinoTile = (dinos, bird, human) => {
 }
 
 function singleTile(type, obj, fact) {
+  const backgroundImage = `
+    style="background-image: url(./images/${obj.img_file});
+      background-size: cover;
+      background-position: center;"
+  `;
   switch(type) {
     case 'dino':
       return `
-        <div class="grid-item">
+        <div ${backgroundImage}class="grid-item">
           ${obj.species}
           <br />
           ${fact}
@@ -209,7 +214,7 @@ function singleTile(type, obj, fact) {
       break;
     case 'bird':
       return `
-        <div class="grid-item">
+        <div ${backgroundImage}class="grid-item">
           ${obj.species}
           <br />
           ${fact}
@@ -218,7 +223,7 @@ function singleTile(type, obj, fact) {
       break;
     case 'human':
       return `
-        <div class="grid-item">
+        <div ${backgroundImage}class="grid-item">
           ${obj.name}
         </div>
       `
