@@ -124,29 +124,73 @@ function setupClickHandlers() {
   }, false);
 }
 
+// Create Dino Compare Method 1
+// NOTE: Weight in JSON file is in lbs, height in inches.
+const compareHeight = (dinoHeight, humanHeight) => {
+  const msg = '';
+  if (dinoHeight > humanHeight) {
+    msg = 'Dino is bigger than Human';
+  } else if (dinoHeight < humanHeight) {
+    msg = 'Dino is smaller than Human';
+  } else {
+    msg = 'Dino is as big as Human';
+  }
+  return msg;
+}
 
+// Create Dino Compare Method 2
+// NOTE: Weight in JSON file is in lbs, height in inches.
+const compareWeight = (dinoWeight, humanWeight) => {
+  const msg = '';
+  if (dinoWeight > humanWeight) {
+    msg = 'Dino is heavier than Human';
+  } else if (dinoWeight < humanWeight) {
+    msg = 'Dino is lighter than Human';
+  } else {
+    msg = 'Dino is as heavy as Human';
+  }
+  return msg;
+}
 
-    // Create Dino Compare Method 1
-    // NOTE: Weight in JSON file is in lbs, height in inches.
+// Create Dino Compare Method 3
+// NOTE: Weight in JSON file is in lbs, height in inches.
+const compareDiet = (dinoDiet, humanDiet) => {
+  const msg = `The dino's diet is ${dinoDiet}, the humans diet is ${humanDiet}`;
+  return msg;
+}
 
-
-    // Create Dino Compare Method 2
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-
-
-    // Create Dino Compare Method 3
-    // NOTE: Weight in JSON file is in lbs, height in inches.
-
+Dino.prototype.getFacts = function(human) {
+/****
+  weight": 70000,
+  "height": "372",
+  "diet": "herbavor",
+  "where": "North America",
+  "when": "Late Jurasic",
+  "fact
+***/
+  const dinoFacts = [
+    this.fact,
+    `This dinosaur lived in ${this.where}`,
+    `This dinosaur during the ${this.when}`
+  ]
+  console.log(dinoFacts);
+  return dinoFacts[0];
+};
 
 // Generate Tiles for each Dino in Array
-const generateDinoTile = (dinos, bird) => {
+const generateDinoTile = (dinos, bird, human) => {
 
   const creatureList = shuffleArray(dinos);
   creatureList.push(bird);
   const tiles = creatureList.map((elem, index) => {
+    const dinoFact = elem.getFacts(human);
     if (index !== 3 ) {
       return `
-        <div class="grid-item">${elem.species}</div>
+        <div class="grid-item">
+          ${elem.species}
+          <br />
+          ${dinoFact}
+        </div>
       `
     } else {
       return `
@@ -176,7 +220,7 @@ function shuffleArray(array) {
 // Add tiles to DOM
 const generateTiles = (elem, store) => {
 
-  const tiles = generateDinoTile(store.dinoObjs, store.birdObj);
+  const tiles = generateDinoTile(store.dinoObjs, store.birdObj, store.humanObj);
   elem.innerHTML = tiles;
   /***
    `
