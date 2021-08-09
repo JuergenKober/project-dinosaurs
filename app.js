@@ -121,7 +121,11 @@ function setupClickHandlers() {
 
     })();
 
+    // On button click, prepare and display infographic
     generateTiles(grid, store);
+
+    // Remove form from screen
+    form.remove();
 
   }, false);
 }
@@ -256,23 +260,4 @@ const generateTiles = (elem, store) => {
 
   const tiles = generateDinoTile(store.dinoObjs, store.birdObj, store.humanObj);
   elem.innerHTML = tiles;
-  /***
-   `
-    <div class="grid-item">1 from generateTiles</div>
-    <div class="grid-item">2</div>
-    <div class="grid-item">3</div>
-    <div class="grid-item">4</div>
-    <div class="grid-item">5</div>
-    <div class="grid-item">6</div>
-    <div class="grid-item">7</div>
-    <div class="grid-item">8</div>
-    <div class="grid-item">9</div>
-  `
-  ***/
 }
-
-
-    // Remove form from screen
-
-
-// On button click, prepare and display infographic
