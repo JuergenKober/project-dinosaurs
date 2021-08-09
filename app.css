@@ -79,14 +79,49 @@ p {
 
 .grid-item:nth-child(7){
     background: #7f62b3fa;
+    margin-bottom: 0;
 }
 
 .grid-item:nth-child(8){
     background: #9fc376f9;
+    margin-bottom: 0;
 }
 
 .grid-item:nth-child(9){
     background: #677bcbfa;
+    margin-bottom: 0;
+}
+
+.grid-item h2 {
+  font-family: 'Frijole', cursive;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+@media screen and (min-width: 920px) {
+  .grid-item h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .grid-item h2 {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.grid-item p {
+    background: rgba(000,000,000, .3);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.8em 0.8em 1.8em;
+    margin:0;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #fff;
 }
 
 /*** Grid Styles starter

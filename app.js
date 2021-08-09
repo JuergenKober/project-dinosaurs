@@ -210,34 +210,31 @@ function singleTile(type, obj, fact) {
     case 'dino':
       return `
         <div ${backgroundImage}class="grid-item">
-          ${obj.species}
-          <br />
-          ${fact}
+          <h2>${obj.species}</h2>
+          <p>${fact}</p>
         </div>
       `
       break;
     case 'bird':
       return `
         <div ${backgroundImage}class="grid-item">
-          ${obj.species}
-          <br />
-          ${fact}
+          <h2>${obj.species}</h2>
+          <p>${fact}</p>
         </div>
       `
       break;
     case 'human':
       return `
         <div ${backgroundImage}class="grid-item">
-          ${obj.name}
+          <h2>${obj.name}</h2>
         </div>
       `
       break;
     default:
       return `
         <div class="grid-item">
-          ${elem.species}
-          <br />
-          ${dinoFact}
+          <h2>${elem.species}</h2>
+          <p>${fact}</p>
         </div>
       `
   }
