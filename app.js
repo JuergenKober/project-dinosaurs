@@ -26,9 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 async function handleDinoData(dataSource) {
 	try {
     const dinoData = await getDinoData(dataSource);
-    //console.log('dinoData, ', dinoData.Dinos)
     store = { ...store, dinoData: dinoData.Dinos };
-    //console.log('store, ', store);
     createDinoObjects();
 	} catch(err) {
 		console.log(`An error occured in handleDinoData: ${err.message}`);
@@ -56,8 +54,6 @@ class Dino {
 
 // Create Dino Objects
 const createDinoObjects = () => {
-  //console.log('store from createDinoObjects ', store);
-
   let dinoList = [];
 
   store.dinoData.map((elem) => {
@@ -70,7 +66,6 @@ const createDinoObjects = () => {
       dinoList.push(dino);
 
     } else {
-      //console.log('it is a bird')
       const bird = new Dino(
         elem.species, elem.weight, elem.height, elem.diet,
         elem.where, elem.when, elem.fact, elem.img_file
@@ -78,9 +73,7 @@ const createDinoObjects = () => {
       store = { ...store, birdObj: bird };
     }
 
-    //console.log('dinoList: ', dinoList);
     store = { ...store, dinoObjs: dinoList };
-    //console.log('store from createDinoObjects', store);
   });
 }
 
@@ -105,19 +98,13 @@ function setupClickHandlers() {
     // Use IIFE to get human data from form
     const handleFormData = (function getFormData() {
       const name = document.getElementById("name").value;
-      //console.log(name);
       const feet = document.getElementById("feet").value;
-      //console.log(feet);
       const inches = document.getElementById("inches").value;
-      //console.log(inches);
       const weight = document.getElementById("weight").value;
-      //console.log(weight);
       const diet = document.getElementById("diet").value;
-      //console.log(diet);
 
       const humanObj = new Human(name, feet, inches, weight, diet);
       store = { ...store, humanObj };
-      //console.log('store, ', store);
 
     })();
 
@@ -174,8 +161,6 @@ Dino.prototype.getFacts = function(human) {
   ]
   const dinoIndex = Math.round(Math.random(0, dinoFacts.length-1)*(dinoFacts.length-1));
 
-  //console.log('random ', dinoIndex);
-  //console.log('random ', dinoFacts[dinoIndex]);
   return dinoFacts[dinoIndex];
 };
 
@@ -194,8 +179,6 @@ const generateDinoTile = (dinos, bird, human) => {
       return singleTile('dino', elem, dinoFact).concat('', singleTile('human', human));
     }
   }).join("");
-
-  //console.log('tiles: ', tiles);
 
   return tiles;
 }
