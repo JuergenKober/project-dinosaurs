@@ -125,7 +125,7 @@ function setupClickHandlers() {
     generateTiles(grid, store);
 
     // Remove form from screen
-    form.remove();
+    //form.remove();
 
   }, false);
 }
